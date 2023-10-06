@@ -2,7 +2,7 @@
  * Start server
  */
 import express from "express";
-import authRouter from "./authRoutes"
+//import authRouter from "./authRoutes"
 
 
 const app = express();
