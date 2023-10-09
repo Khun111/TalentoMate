@@ -4,14 +4,18 @@
 import express from "express";
 import authRouter from "./authRoutes"
 import employeeRouter from "./employeeRoutes";
+import cors from 'cors'
+//import authRouter from "./authRoutes"
 
 
 const app = express();
 app.use(express.json());
-export const port = process.env.PORT || 5000
 
 
 app.use(authRouter);
 app.use(employeeRouter);
+app.use(cors());
 
-app.listen(port, () => {console.log('listening on', port)});
+const port = process.env.PORT || 5000
+
+app.listen(port, () => { console.log('listening on', port) });
