@@ -3,7 +3,7 @@
  */
 import express from "express";
 import authRouter from "./authRoutes"
-import employeeRouter from "./employeeRoutes";
+import employeeRouter from "./routes/employeeRoutes";
 import cors from 'cors'
 //import authRouter from "./authRoutes"
 

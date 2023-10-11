@@ -1,4 +1,4 @@
-import User from './db';
+import User from './models/userModel';
 import redisClient from './redis';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';

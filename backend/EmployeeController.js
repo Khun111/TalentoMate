@@ -1,4 +1,4 @@
-import User from './db';
+import User from './models/userModel';
 import bcrypt from 'bcrypt';
 
 
@@ -55,7 +55,7 @@ class EmployeeController {
         }
     }
 
-    static async delete(req, res) {
+    static async deleteOne(req, res) {
         const id = req.params.id;
         try {
             await User.findByIdAndDelete(id, req.body);
