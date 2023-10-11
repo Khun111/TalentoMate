@@ -60,7 +60,9 @@ class AuthController {
             if (!user) res.status(404).json({error: 'Not Found'});
             console.log(user.password)
             if (!await bcrypt.compare(password, user.password)) res.status(403).json({error: 'Password mismatch'});
+            console.log(user._id);
             const token = jwt.sign({id: user._id}, process.env.JWT_SECRET)
+            console.log(token);
             redisClient.client.set(`auth_${token}`, user._id.toString(), 'EX', 60 * 60 * 24);
             res.status(200).json({token, role: user.role});
         } catch (error) {
@@ -68,7 +70,7 @@ class AuthController {
         }
 }
     static async logout(req, res) {
-        const {token} = req.params;
+        const token = req.headers.authorization
         const key = `auth_${token}`
         try {
             const userId = await redisClient.client.get(key);
