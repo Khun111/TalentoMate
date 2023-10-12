@@ -2,8 +2,9 @@
  * Start server
  */
 import express from "express";
-import authRouter from "./authRoutes"
+import authRouter from "./routes/authRoutes"
 import employeeRouter from "./routes/employeeRoutes";
+import attendanceRouter from "./routes/attendanceRoutes";
 import cors from 'cors'
 //import authRouter from "./authRoutes"
 
@@ -14,6 +15,7 @@ app.use(express.json());
 
 app.use(authRouter);
 app.use(employeeRouter);
+app.use(attendanceRouter);
 app.use(cors());
 
 const port = process.env.PORT || 5000

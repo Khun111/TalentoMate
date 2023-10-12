@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import AttendanceController from './AttendanceController';
+import AttendanceController from '../controllers/AttendanceController';
 const router = Router();
 
 /**
@@ -13,8 +13,7 @@ const router = Router();
 
 router.post('/attendance', AttendanceController.create)
 router.patch('/attendance/:id', AttendanceController.update)
-router.get('/attendance', AttendanceController.readAll)
-router.get('/attendance/:id', AttendanceController.readOne)
-router.delete('/attendance/:id', AttendanceController.delete)
+router.get('/attendance', AttendanceController.read)
+router.delete('/attendance/:id', AttendanceController.deleteOne)
 
 export default router;

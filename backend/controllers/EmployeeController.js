@@ -1,4 +1,4 @@
-import User from './models/userModel';
+import User from '../models/userModel';
 import bcrypt from 'bcrypt';
 
 
@@ -11,14 +11,14 @@ class EmployeeController {
      * Function to create new employee
      */
     static async create(req, res) {
-        const {email, password, role} = req.body;
+        const { email, password, role } = req.body;
         try {
             const hashedPassword = await bcrypt.hash(password, 10);
-            const user = new User({email, password: hashedPassword, role});
+            const user = new User({ email, password: hashedPassword, role });
             const employee = await user.save();
-            res.status(201).json({employee});
+            res.status(201).json({ employee });
         } catch (error) {
-            if (error.name == 'MongoServerError' && error.code === 11000) res.status(401).json({error:'User exists. Please login instead'})
+            if (error.name == 'MongoServerError' && error.code === 11000) res.status(401).json({ error: 'User exists' })
         }
     }
     /**
@@ -28,18 +28,19 @@ class EmployeeController {
      */
     static async update(req, res) {
         const id = req.params.id;
+        const {email} = req.body;
         try {
-            const updatedUser = await User.findByIdAndUpdate(id, req.body);
-            res.status(200).json({updatedUser});
+            const updatedUser = await User.findByIdAndUpdate(id, {email});
+            res.status(200).json({ updatedUser });
         } catch (error) {
-            res.status(500).json({error: 'Server error'});
+            res.status(500).json({ error: 'Server error' });
         }
     }
 
     static async readAll(req, res) {
         try {
             const users = await User.find();
-            res.status(200).json({users});
+            res.status(200).json({ users });
         } catch (error) {
             res.status(500).json({ error: 'Server error' });
         }
@@ -49,7 +50,7 @@ class EmployeeController {
         const id = req.params.id;
         try {
             const user = await User.findById(id);
-            res.status(200).json({user});
+            res.status(200).json({ user });
         } catch (error) {
             res.status(500).json({ error: 'Server error' });
         }

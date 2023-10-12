@@ -1,10 +1,10 @@
-import User from './models/userModel';
-import redisClient from './redis';
+import {User} from '../models/db';
+import redisClient from '../redis';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import nodemailer from 'nodemailer';
 import 'dotenv/config';
-import { port } from './server';
+import { port } from '../server';
 import { ObjectId } from 'mongodb'
 
 const transporter = nodemailer.createTransport({
@@ -15,7 +15,7 @@ const transporter = nodemailer.createTransport({
         pass: process.env.MAILTRAP_PASS
     }
 })
-const sendEmail = async (subject, recipients, message) =>{
+const sendEmail = async (subject, recipients, message) => {
     try {
         const messageObject = {
             from: 'Samuel',
@@ -35,52 +35,52 @@ class AuthController {
     * Signup handler using jwt and redis
     */
     static async signup(req, res) {
-        const {email, password} = req.body;
-        
+        const { email, password } = req.body;
+
         try {
             const hashedPassword = await bcrypt.hash(password, 10)
-            const user = new User({email, password: hashedPassword, role: 'admin'});
+            const user = new User({ email, password: hashedPassword, role: 'admin' });
             const result = await user.save();
             // const token = jwt.sign({id: result._id}, process.env.JWT_SECRET);
             // redisClient.client.set(`auth_${token}`, result._id.toString(), 'EX', 60 * 60 * 24);
-            res.status(201).json({result});
+            res.status(201).json({ result });
         } catch (error) {
-            if (error.name === 'MongoServerError' && error.code === 11000) res.status(401).json({error: 'User Exists. Please Login Instead'});
-            else res.status(500).json({error: 'Server Error'});
+            if (error.name === 'MongoServerError' && error.code === 11000) res.status(401).json({ error: 'User Exists. Please Login Instead' });
+            else res.status(500).json({ error: 'Server Error' });
         }
-}
+    }
     /*
     * Login handler using jwt and redis
     */
     static async login(req, res) {
         const { email, password, role } = req.body;
         try {
-            const user = await User.findOne({ email, role});
+            const user = await User.findOne({ email, role });
             console.log(user)
-            if (!user) res.status(404).json({error: 'Not Found'});
+            if (!user) res.status(404).json({ error: 'Not Found' });
             console.log(user.password)
-            if (!await bcrypt.compare(password, user.password)) res.status(403).json({error: 'Password mismatch'});
+            if (!await bcrypt.compare(password, user.password)) res.status(403).json({ error: 'Password mismatch' });
             console.log(user._id);
-            const token = jwt.sign({id: user._id}, process.env.JWT_SECRET)
+            const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET)
             console.log(token);
             redisClient.client.set(`auth_${token}`, user._id.toString(), 'EX', 60 * 60 * 24);
-            res.status(200).json({token, role: user.role});
+            res.status(200).json({ token, role: user.role });
         } catch (error) {
-            res.status(500).json({error: error.message});
+            res.status(500).json({ error: error.message });
         }
-}
+    }
     static async logout(req, res) {
         const token = req.headers.authorization
         const key = `auth_${token}`
         try {
             const userId = await redisClient.client.get(key);
             console.log(userId);
-            const user = await User.findById({_id: new ObjectId(userId)})
-            if (!user) res.status(400).json({error: 'User not found'});
+            const user = await User.findById({ _id: new ObjectId(userId) })
+            if (!user) res.status(400).json({ error: 'User not found' });
             await redisClient.client.del(key)
             res.status(204).send('Deleted')
         } catch (error) {
-            res.status(500).json({error: error.message});
+            res.status(500).json({ error: error.message });
         }
     }
     /**
@@ -88,7 +88,7 @@ class AuthController {
      * forgot password: function to handle forgot password of user
      */
     static async forgotPassword(req, res) {
-        const {email} = req.body
+        const { email } = req.body
         try {
             const user = await User.findOne({ email })
             if (!user) res.status(401).json({ error: 'Email not found' });
@@ -100,17 +100,17 @@ class AuthController {
             const resetLink = `http://localhost:${port}/resetPassword/${token}`
             const message = `Click here to reset your password ${resetLink}`
             sendEmail('Password Reset', 'amure387@gmail.com', message)
-            res.status(200).json({token})
+            res.status(200).json({ token })
         } catch (error) {
-            res.status(500).json({error: error.message})
+            res.status(500).json({ error: error.message })
         }
     }
     /**
      * Reset password for user
      */
     static async resetPassword(req, res) {
-        const {password} = req.body;
-        const {token} = req.params;
+        const { password } = req.body;
+        const { token } = req.params;
         const key = `auth_${token}`;
         try {
             const userId = await redisClient.client.get(key)
@@ -119,9 +119,9 @@ class AuthController {
             const updatedUser = await User.findByIdAndUpdate((userId), { password: hashedPassword });
             console.log(updatedUser);
             res.status(200).json(updatedUser);
-        await redisClient.client.del(key)
+            await redisClient.client.del(key)
         } catch (error) {
-            res.status(500).json({error: error.message});
+            res.status(500).json({ error: error.message });
         }
     }
 }
