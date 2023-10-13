@@ -36,10 +36,13 @@ class AuthController {
     */
     static async signup(req, res) {
         const {email, password} = req.body;
+        console.log(email, password);
         
         try {
             const hashedPassword = await bcrypt.hash(password, 10)
+            console.log(hashedPassword);
             const user = new User({email, password: hashedPassword, role: 'admin'});
+            console.log(user);
             const result = await user.save();
             // const token = jwt.sign({id: result._id}, process.env.JWT_SECRET);
             // redisClient.client.set(`auth_${token}`, result._id.toString(), 'EX', 60 * 60 * 24);
