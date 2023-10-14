@@ -1,6 +1,6 @@
 import { response } from "express";
-import {Attendance} from "../models/db"
-import {User} from "../models/db";
+import Attendance from "../models/attendanceModel";
+import User from "../models/userModel";
 import { ObjectId } from 'mongodb'
 /**
  * Class to manage attendance records;
@@ -13,10 +13,12 @@ class AttendanceControlller {
      * function to create attendance record
      */
     static async create (req, res) {
-        const {user, date} = req.body;
+        const {userId} = req.body;
         try {
-            const attendance = new Attendance({user, date});
-            const employee = await User.findById(user);
+            const employee = await User.findById(userId);
+            const attendance = new Attendance({user : employee._id, date: Date.now()});
+            await attendance.save();
+            console.log(attendance);
             employee.attendanceRecords.push(attendance._id);
             await employee.save();
             res.status(201).json({success: 'Atendance saved successfully'});
@@ -39,9 +41,10 @@ class AttendanceControlller {
     }
 
     static async read (req, res) {
-        const { user } = req.body;
+        const { userId } = req.body;
         try {
-            const employee = await User.findById(user).populate('attendanceRecords');
+            const employee = await User.findById(userId).populate({path: 'attendanceRecords', model: Attendance});
+            console.log(employee);
             const attendance = employee.attendanceRecords;
             res.status(200).json({attendance});
         } catch (error) {

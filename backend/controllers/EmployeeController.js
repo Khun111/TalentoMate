@@ -11,10 +11,10 @@ class EmployeeController {
      * Function to create new employee
      */
     static async create(req, res) {
-        const { email, password, role } = req.body;
+        const { email, password} = req.body;
         try {
             const hashedPassword = await bcrypt.hash(password, 10);
-            const user = new User({ email, password: hashedPassword, role });
+            const user = new User({ email, password: hashedPassword, role: "employee" });
             const employee = await user.save();
             res.status(201).json({ employee });
         } catch (error) {
