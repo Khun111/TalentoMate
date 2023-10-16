@@ -1,0 +1,137 @@
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      /* background: linear-gradient(45deg, #8e44ad, #5a349b); */
+      /* color: white; */
+    }
+
+    .landing-page {
+      padding: 50px;
+      text-align: center;
+    }
+
+    header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    .logo img {
+      width: 200px; /* Adjust the size as needed */
+      height: 200px; /* Adjust the size as needed */
+    }
+
+    .description {
+      text-align: center;
+      margin: 20px;
+      font-size: 24px; /* Adjust the font size as needed */
+      font-weight: bold; /* Add bold for emphasis */
+      color: #fff; /* Change the text color to white */
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Add text shadow for a nice effect */
+    }
+
+    .cta-buttons button {
+      margin-left: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .sign-in {
+      background-color: #3498db; /* Blue color for sign-in */
+    }
+
+    .sign-up {
+      background-color: #e74c3c; /* Red color for sign-up */
+    }
+
+    .sign-in, .sign-up {
+      border: none;
+      color: white;
+      border-radius: 5px;
+    }
+
+    .sign-in:hover, .sign-up:hover {
+      opacity: 0.8;
+    }
+
+    /* Style to indicate admin buttons */
+    .admin-button {
+      font-weight: bold;
+    }
+  
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+    }
+
+    .nav-links {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: flex-end;
+      width: 100%;
+    }
+    
+    .nav-links ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+    
+    .nav-links li {
+      margin-left: 20px;
+    }
+    
+    .nav-links a {
+      color: #fbfafa;
+      text-decoration: none;
+    }
+    
+    .nav-links a:hover {
+      color: #6a0572;
+    }
+    
+    .logo {
+      margin-right: top left; /* Pushes the logo to the left */
+      margin-left: 20px;
+    }
+    
+    .description {
+      text-align: center;
+      margin: 20px;
+    }
+    
+    .cta-buttons {
+      margin-left: center; /* Pushes the buttons to the right */
+    }
+    
+    /* Additional styles for buttons */
+    .sign-in, .sign-up {
+      padding: 10px 20px;
+      margin-left: 10px;
+    }
+
+    /* Update index.css */
+
+    /* Update index.css */
+
+body {
+  margin: 0;
+  padding: 0;
+  background-image: url('background3.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  height: 100vh;
+}
+
+/* Rest of your existing styles */
