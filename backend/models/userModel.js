@@ -9,6 +9,11 @@ const userSchema = new mongoose.Schema({
         ref: 'Attendance',
     },
     ],
+    leaveRequests : [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Leave',
+    },
+],
 },
 { timestamps: true }
 )

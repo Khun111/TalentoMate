@@ -11,6 +11,7 @@ class EmployeeController {
      * Function to create new employee
      */
     static async create(req, res) {
+
         const {email, password} = req.body;
         try {
             const hashedPassword = await bcrypt.hash(password, 10);
@@ -39,7 +40,7 @@ class EmployeeController {
 
     static async readAll(req, res) {
         try {
-            const users = await User.find();
+            const users = await User.find({role: "employee"});
             res.status(200).json({ users });
         } catch (error) {
             res.status(500).json({ error: 'Server error' });

@@ -5,6 +5,7 @@ import express from "express";
 import authRouter from "./routes/authRoutes"
 import employeeRouter from "./routes/employeeRoutes";
 import attendanceRouter from "./routes/attendanceRoutes";
+import leaveRouter from "./routes/leaveRoutes";
 import cors from 'cors'
 //import authRouter from "./authRoutes"
 
@@ -13,13 +14,19 @@ mongoose.connect('mongodb://localhost:27017/talentomate').then(() => console.log
 
 
 const app = express();
+const corsOptions = {
+    origin: ["'http://127.0.0.1:5173"],
+    methods: ['GET', 'POST', 'DELETE','PUT', 'PATCH'],
+    credentials: true,
+};
 app.use(express.json());
 
 
 app.use(authRouter);
 app.use(employeeRouter);
 app.use(attendanceRouter);
-app.use(cors());
+app.use(leaveRouter);
+app.use(cors(corsOptions));
 
 const port = process.env.PORT || 5000
 
