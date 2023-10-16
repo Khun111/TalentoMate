@@ -5,12 +5,13 @@ const AttendanceSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
     },
-    date: {
+    status: {
         type: String,
-        required: [true, 'This field is required'],
+        enum: ['Present', 'Absent'],
     },
-    status: String,
-});
+},
+{timestamps: true}
+);
 
-const Attendance = mongoose.model('attendanceRecords', AttendanceSchema);
+const Attendance = mongoose.model('Attendance', AttendanceSchema);
 export default Attendance;

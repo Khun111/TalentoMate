@@ -13,15 +13,15 @@ class AttendanceControlller {
      * function to create attendance record
      */
     static async create (req, res) {
-        const {userId} = req.body;
+        const {userId, status} = req.body;
         try {
             const employee = await User.findById(userId);
-            const attendance = new Attendance({user : employee._id, date: Date.now()});
+            const attendance = new Attendance({user : employee._id, status});
             await attendance.save();
             console.log(attendance);
             employee.attendanceRecords.push(attendance._id);
             await employee.save();
-            res.status(201).json({success: 'Atendance saved successfully'});
+            res.status(201).json({attendance});
         } catch (error) {
             res.status(500).json({error: error.message})
         }
@@ -43,7 +43,7 @@ class AttendanceControlller {
     static async read (req, res) {
         const { userId } = req.body;
         try {
-            const employee = await User.findById(userId).populate({path: 'attendanceRecords', model: Attendance});
+            const employee = await User.findById(userId).populate('attendanceRecords');
             console.log(employee);
             const attendance = employee.attendanceRecords;
             res.status(200).json({attendance});
@@ -56,10 +56,10 @@ class AttendanceControlller {
         const {id}= req.params;
         try {
             const attendance = await Attendance.findByIdAndRemove(id);
-            if(!employee) res.status(404).json({error: 'Not Found'});
+            if(!attendance) res.status(404).json({error: 'Not Found'});
             const employee = await User.findByIdAndUpdate (attendance.user, {$pull: {attendanceRecords: id }});
             if (!employee) response.status(500).json({error: 'Error updsting employee'});
-            res.status(204).json({success: 'Deleted'});
+            res.status(204).send();
         } catch (error) {
             res.status(500).json({error: error.message})
         }
