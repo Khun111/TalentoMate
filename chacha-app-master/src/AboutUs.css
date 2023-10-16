@@ -1,0 +1,18 @@
+/* AboutUs.css */
+.about-us-page {
+    padding: 20px;
+    margin: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .about-us-page h1 {
+    font-size: 2em;
+    margin-bottom: 10px;
+  }
+  
+  .about-us-page p {
+    font-size: 1.2em;
+  }
+  
