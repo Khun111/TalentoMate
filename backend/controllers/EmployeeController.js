@@ -12,10 +12,10 @@ class EmployeeController {
      */
     static async create(req, res) {
 
-        const {email, password} = req.body;
+        const { name, job, email, password } = req.body;
         try {
             const hashedPassword = await bcrypt.hash(password, 10);
-            const user = new User({email, password: hashedPassword, role: 'employee'});
+            const user = new User({ name, job, email, password: hashedPassword, role: 'employee' });
             const employee = await user.save();
             res.status(201).json({ employee });
         } catch (error) {
@@ -29,9 +29,9 @@ class EmployeeController {
      */
     static async update(req, res) {
         const id = req.params.id;
-        const {email} = req.body;
+        const { email } = req.body;
         try {
-            const updatedUser = await User.findByIdAndUpdate(id, {email});
+            const updatedUser = await User.findByIdAndUpdate(id, { email });
             res.status(200).json({ updatedUser });
         } catch (error) {
             res.status(500).json({ error: 'Server error' });
@@ -40,7 +40,7 @@ class EmployeeController {
 
     static async readAll(req, res) {
         try {
-            const users = await User.find({role: "employee"});
+            const users = await User.find({ role: "employee" });
             res.status(200).json({ users });
         } catch (error) {
             res.status(500).json({ error: 'Server error' });
