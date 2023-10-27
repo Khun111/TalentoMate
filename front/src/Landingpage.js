@@ -13,6 +13,11 @@ const LandingPage = () => {
     // Navigate to SignIn page
     navigate('/signin');
   };
+  const handleSignUp = () => {
+    console.log('Sign In button clicked.');
+    // Navigate to SignIn page
+    navigate('/signup');
+  };
 
   const handleAboutUs = () => {
     console.log('About Us button clicked.');
@@ -62,6 +67,9 @@ const LandingPage = () => {
         </div>
         <div className="cta-buttons">
           <button className="sign-in button" onClick={handleSignIn}>Sign In </button>
+        </div>
+        <div className="cta-buttons">
+          <button className="sign-up button" onClick={handleSignUp}>Sign Up</button>
         </div>
       </header>
     </div>
