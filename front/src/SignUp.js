@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import './SignIn.css';
@@ -11,7 +11,9 @@ const SignUp = () => {
     email: '',
     password: ''
   });
-
+  useEffect(() => {
+    axios.get("http://localhost:3001/users").then(response => console.log(response.data)).catch(error => console.log(error));
+  }, [])
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -19,19 +21,26 @@ const SignUp = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     // Check if the provnameed user name, email, and password match the predefined fake data
     const fakeSecretKey = '123';
     const adminData = {
-      name: formData.name,
-      job: formData.job,
-      email: formData.email,
-      password: formData.password
+      "name": formData.name,
+      "job": formData.job,
+      "email": formData.email,
+      "password": formData.password
     }
+    console.log(adminData);
+    try {
+      const response = await axios.post("http://localhost:3001/users", adminData);
+      console.log(response);
+    } catch (error) {
+      console.error(error);
+    }
+
     if (formData.secretKey === fakeSecretKey ) {
-      axios.post("http://localhost:3001/users", adminData).then(response => console.log(response.data)).catch(error => console.log(error));
       // navigate('/signin');
 
       // Navigate to Dashboard on successful sign-in
