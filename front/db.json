@@ -1,16 +1,48 @@
 {
   "users": [
     {
+      "id": 1,
       "name": "Iyanu",
       "job": "Engineer",
       "email": "test@email.com",
       "password": "password"
     },
     {
+      "id": 2,
       "name": "Adura",
       "job": "Engineer",
       "email": "test1@email.com",
       "password": "password"
+    },
+    {
+      "id": 3,
+      "name": "Samuel",
+      "job": "Software Engineer",
+      "email": "testm2@email.com",
+      "password": "password"
+    },
+    {
+      "id": 4,
+      "name": "Samuel",
+      "job": "Software Engineer",
+      "email": "testm3@email.com",
+      "password": "password"
+    },
+    {
+      "id": 5,
+      "name": "Samuel Oluwatobi Amure",
+      "job": "Software Engineer",
+      "email": "testm4@email.com",
+      "password": "password",
+      "role": "admin"
+    },
+    {
+      "name": "Samuel",
+      "job": "Software Engineer",
+      "email": "testa5@email.com",
+      "password": "password",
+      "role": "admin",
+      "id": 6
     }
-  ] 
+  ]
 }

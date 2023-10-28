@@ -27,28 +27,34 @@ const SignUp = () => {
     // Check if the provnameed user name, email, and password match the predefined fake data
     const fakeSecretKey = '123';
     const adminData = {
-      "name": formData.name,
-      "job": formData.job,
-      "email": formData.email,
-      "password": formData.password
+      name: formData.name,
+      job: formData.job,
+      email: formData.email,
+      password: formData.password,
+      role: 'admin'
     }
     console.log(adminData);
+    
+    if (formData.secretKey !== fakeSecretKey) {
+      console.log('Invalname credentials. Please try again.');
+      return;
+    }
     try {
       const response = await axios.post("http://localhost:3001/users", adminData);
       console.log(response);
     } catch (error) {
-      console.error(error);
+      console.error(error.response.data);
     }
 
-    if (formData.secretKey === fakeSecretKey ) {
-      // navigate('/signin');
+  //   {
+  //     navigate('/signin');
 
-      // Navigate to Dashboard on successful sign-in
-      // navigate('/dashboard');
-    } else {
-      console.log('Invalname credentials. Please try again.');
-      // Add logic to display an error message for invalname credentials if needed
-    }
+  //     Navigate to Dashboard on successful sign-in
+  //     navigate('/dashboard');
+  //   } else {
+      
+  //     Add logic to display an error message for invalname credentials if needed
+  //   }
   };
 
   return (
