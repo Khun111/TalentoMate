@@ -35,7 +35,7 @@ class AuthController {
     * Signup handler using jwt and redis
     */
     static async signup(req, res) {
-
+        console.log(req.body);
         const {name, job, email, password } = req.body;
 
         try {
@@ -44,10 +44,11 @@ class AuthController {
             const result = await user.save();
             // const token = jwt.sign({id: result._id}, process.env.JWT_SECRET);
             // redisClient.client.set(`auth_${token}`, result._id.toString(), 'EX', 60 * 60 * 24);
-            res.status(201).json({ result });
+            return res.status(201).json({ result });
         } catch (error) {
+            console.error(error)
             if (error.name === 'MongoServerError' && error.code === 11000) res.status(401).json({ error: 'User Exists. Please Login Instead' });
-            else res.status(500).json({ error: 'Server Error' });
+            else return res.status(500).json({ error });
         }
     }
     /*

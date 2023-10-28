@@ -14,8 +14,8 @@ import cors from 'cors'
 import mongoose from 'mongoose';
 mongoose.connect('mongodb://localhost:27017/talentomate').then(() => console.log('Connected mongoose')).catch(err => console.error(err));
 
-
 const app = express();
+app.use(cors);
 const options = {
     definition: {
         openapi: "3.1.0",
@@ -49,13 +49,13 @@ app.use(
     swaggerUi.serve,
     swaggerUi.setup(specs)
 );
-const corsOptions = {
-    origin: ["http://127.0.0.1:5173"],
-    methods: ['GET', 'POST', 'DELETE','PUT', 'PATCH'],
-    credentials: true,
-};
-app.use(cors(corsOptions));
-app.use(express.json());
+// const corsOptions = {
+//     origin: ["http://127.0.0.1:3000"],
+//     methods: ['GET', 'POST', 'DELETE','PUT', 'PATCH'],
+//     credentials: true,
+// };
+// app.use(cors(corsOptions));
+// app.use(express.json());
 
 
 app.use(authRouter);
