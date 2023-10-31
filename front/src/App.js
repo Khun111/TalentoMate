@@ -4,6 +4,7 @@ import LandingPage from './Landingpage';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
 import Dashboard from './Dashboard';
+import EmployeeDashboard from './EmployeeDashboard';
 import AboutUs from './AboutUs';
 import Services from './Services';
 import Contact from './Contact';
@@ -20,6 +21,7 @@ const App = () => {
       <Route path="/aboutus" element={<AboutUs />} />
       <Route path="/services" element={<Services />} />
       <Route path="/contact" element={<Contact />} />
+      <Route path="/dashboard" component={EmployeeDashboard} />
     </Routes>
   );
 };
