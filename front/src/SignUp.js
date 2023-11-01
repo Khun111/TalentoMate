@@ -12,7 +12,7 @@ const SignUp = () => {
     password: ''
   });
   useEffect(() => {
-    axios.get("http://localhost:3001/users").then(response => console.log(response.data)).catch(error => console.log(error));
+    axios.get("http://localhost:5000/employee").then(response => console.log(response.data)).catch(error => console.log(error));
   }, [])
   const navigate = useNavigate();
 
@@ -31,7 +31,7 @@ const SignUp = () => {
       job: formData.job,
       email: formData.email,
       password: formData.password,
-      role: 'admin'
+      //role: 'admin'
     }
     console.log(adminData);
     
@@ -40,7 +40,8 @@ const SignUp = () => {
       return;
     }
     try {
-      const response = await axios.post("http://localhost:3001/users", adminData);
+      const response = await axios.post("http://localhost:5000/signup", adminData);
+      navigate('/signin');
       console.log(response);
     } catch (error) {
       console.error(error.response.data);

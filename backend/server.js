@@ -12,10 +12,10 @@ import cors from 'cors'
 //import authRouter from "./authRoutes"
 
 import mongoose from 'mongoose';
-mongoose.connect('mongodb://localhost:27017/talentomate').then(() => console.log('Connected mongoose')).catch(err => console.error(err));
+mongoose.connect('mongodb+srv://malvinmuthuuri47:M0ng0Db%24%25%5E%26231@cluster0.qijkiyb.mongodb.net/Talentomate').then(() => console.log('Connected mongoose')).catch(err => console.error(err));
 
 const app = express();
-app.use(cors);
+app.use(cors());
 const options = {
     definition: {
         openapi: "3.1.0",
@@ -55,7 +55,7 @@ app.use(
 //     credentials: true,
 // };
 // app.use(cors(corsOptions));
-// app.use(express.json());
+app.use(express.json());
 
 
 app.use(authRouter);

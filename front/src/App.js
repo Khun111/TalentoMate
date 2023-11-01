@@ -7,13 +7,16 @@ import Dashboard from './Dashboard';
 import AboutUs from './AboutUs';
 import Services from './Services';
 import Contact from './Contact';
-
+import EmployeeDirectory from './EmployeeDirectory';
+import EditUser from './EditUser';
 
 
 const App = () => {
   return (
     <Routes>
       <Route path="/" element={<LandingPage />} />
+      <Route path="/createUser" element={<EmployeeDirectory />} />
+      <Route path="/editUser/:id" element={<EditUser />} />
       <Route path="/signin" element={<SignIn />} />
       <Route path="/signup" element={<SignUp />} />
       <Route path="/dashboard/*" element={<Dashboard />} />
