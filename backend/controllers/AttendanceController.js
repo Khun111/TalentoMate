@@ -41,9 +41,9 @@ class AttendanceControlller {
     }
 
     static async read (req, res) {
-        const { userId } = req.body;
+        const { id } = req.params;
         try {
-            const employee = await User.findById(userId).populate('attendanceRecords');
+            const employee = await User.findById(id).populate('attendanceRecords');
             console.log(employee);
             const attendance = employee.attendanceRecords;
             res.status(200).json({attendance});
@@ -58,7 +58,7 @@ class AttendanceControlller {
             const attendance = await Attendance.findByIdAndRemove(id);
             if(!attendance) res.status(404).json({error: 'Not Found'});
             const employee = await User.findByIdAndUpdate (attendance.user, {$pull: {attendanceRecords: id }});
-            if (!employee) response.status(500).json({error: 'Error updsting employee'});
+            if (!employee) response.status(500).json({error: 'Error updating employee'});
             res.status(204).send();
         } catch (error) {
             res.status(500).json({error: error.message})

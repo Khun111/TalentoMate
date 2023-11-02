@@ -1,42 +1,53 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from "axios";
 import './SignIn.css';
 
 const SignIn = () => {
   const [formData, setFormData] = useState({
-    userId: '',
     email: '',
-    password: ''
+    password: '',
+    role: ''
   });
-
+  useEffect(() => {
+    axios.get("http://localhost:5000/employee").then(response => console.log(response.data)).catch(error => console.log(error));
+  }, [])
   const navigate = useNavigate();
 
   const handleChange = (e) => {
-    const { id, value } = e.target;
-    setFormData({ ...formData, [id]: value });
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Check if the provided user ID, email, and password match the predefined fake data
-    const fakeUserId = '123';
-    const fakeEmail = 'test@example.com';
-    const fakePassword = 'password123';
-
-    if (
-      formData.userId === fakeUserId &&
-      formData.email === fakeEmail &&
-      formData.password === fakePassword
-    ) {
-      console.log('Sign in successful! Redirecting to Dashboard...');
-
-      // Navigate to Dashboard on successful sign-in
-      navigate('/dashboard');
-    } else {
-      console.log('Invalid credentials. Please try again.');
-      // Add logic to display an error message for invalid credentials if needed
+    // Check if the provnameed user name, email, and password match the predefined fake data
+    const adminData = {
+      email: formData.email,
+      password: formData.password,
+      role: formData.role
     }
+    // console.log(formData.role);
+    console.log(adminData);
+    
+    try {
+      const response = await axios.post("http://localhost:5000/login", adminData);
+      navigate('/dashboard');
+      console.log(response);
+    } catch (error) {
+      console.error(error.response.data);
+    }
+
+  //   {
+  //     navigate('/signin');
+
+  //     Navigate to Dashboard on successful sign-in
+  //     navigate('/dashboard');
+  //   } else {
+      
+  //     Add logic to display an error message for invalname credentials if needed
+  //   }
   };
 
   return (
@@ -47,18 +58,21 @@ const SignIn = () => {
             <h2 className="text-center mb-4">Sign In</h2>
             <form onSubmit={handleSubmit}>
               <div className="form-group">
-                <label htmlFor="userId">User ID:</label>
-                <input type="text" className="form-control" id="userId" placeholder="Enter User ID" onChange={handleChange} required />
-              </div>
-              <div className="form-group">
                 <label htmlFor="email">Email:</label>
-                <input type="email" className="form-control" id="email" placeholder="Enter email" onChange={handleChange} required />
+                <input type="email" className="form-control" name="email" placeholder="Enter email" onChange={handleChange} required />
               </div>
               <div className="form-group">
                 <label htmlFor="password">Password:</label>
-                <input type="password" className="form-control" id="password" placeholder="Enter password" onChange={handleChange} required />
+                <input type="password" className="form-control" name="password" placeholder="Enter password" onChange={handleChange} required />
               </div>
-              <button type="submit" className="btn btn-primary btn-block">Login</button>
+              <div className="form-group">
+                <select name="role" onChange={handleChange} required>
+                  <option selected disabled>Select Role</option>
+                  <option value="admin">Admin</option>
+                  <option value="employee">Employee</option>
+                </select>
+              </div>
+              <button type="submit" className="btn btn-primary btn-block">Sign In</button>
             </form>
             <div className="text-center mt-3">
               <a href="https://example.com">Forgot Password?</a>
