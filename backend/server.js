@@ -12,7 +12,7 @@ import cors from 'cors'
 //import authRouter from "./authRoutes"
 
 import mongoose from 'mongoose';
-mongoose.connect('mongodb+srv://malvinmuthuuri47:M0ng0Db%26%23%24%40%21%2A%2A45973@cluster0.qijkiyb.mongodb.net/Talentomate').then(() => console.log('Connected mongoose')).catch(err => console.error(err));
+mongoose.connect('mongodb+srv://<user>:<password>@cluster0.qijkiyb.mongodb.net/<dbName>').then(() => console.log('Connected mongoose')).catch(err => console.error(err));
 
 const app = express();
 app.use(cors());
