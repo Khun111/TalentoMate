@@ -1,6 +1,7 @@
 /**
  * Start server
  */
+import 'dotenv/config';
 import express from "express";
 import swaggerUi from "swagger-ui-express"
 import swaggerJSDoc from 'swagger-jsdoc';
@@ -12,10 +13,10 @@ import cors from 'cors'
 //import authRouter from "./authRoutes"
 
 import mongoose from 'mongoose';
-mongoose.connect('mongodb://localhost:27017/talentomate').then(() => console.log('Connected mongoose')).catch(err => console.error(err));
+mongoose.connect('mongodb+srv://amure387:samuelam@cluster0.fzhd2hf.mongodb.net/').then(() => console.log('Connected mongoose')).catch(err => console.error(err));
 
 const app = express();
-app.use(cors);
+app.use(cors());
 const options = {
     definition: {
         openapi: "3.1.0",
