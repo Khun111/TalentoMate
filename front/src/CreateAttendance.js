@@ -32,6 +32,7 @@ function CreateAttendance() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         handleAdd(newData);
+        navigate('/dashboard/employee')
     }
 
     const handleChange = (e) => {
