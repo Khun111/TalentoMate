@@ -5,6 +5,7 @@ import './Dashboard.css'; // Import the CSS for Dashboard
 import Logo from './Logo 1.png';
 import EmployeeDirectory from './EmployeeDirectory';
 import EditUser from './EditUser';
+import CreateAttendance from './CreateAttendance';
 /* import D3Chart from './D3Chart.js';
 import D3ChartLeave from './D3ChartLeave.js';
 import JohnDoeImage from './JohnDoe.jpg';
@@ -48,21 +49,31 @@ const Dashboard = () => {
       console.error(err)
     }
   };
+  
+  // <Route path="/createAttendance/:id" element={<CreateAttendance />} />
 
   // Attendance Records
-  const [attenData, setAttenData] = useState({});
+  /* const [attenData, setAttenData] = useState({
+    userId: ''
+  });
 
   useEffect(() => {
     attendanceData();
   }, []);
 
+  This API is failing.
   const attendanceData = async () => {
     try {
-      // Am gonna get you
+      data.map((employee) => {
+
+      })
+      const response = await axios.get('http://127.0.0.1:5000/attendance')
+      setAttenData(response.data)
+      console.log('Attendance data', response.data)
     } catch (err) {
-      console.log(err)
+      console.log('Attendance error', err)
     }
-  };
+  }; */
 
   // Leave Requests
   const [leavedata, setLeaveData] = useState([]);
@@ -84,8 +95,12 @@ const Dashboard = () => {
     setActiveSection(section);
   };
 
-  /* const handleAdd = (newData, section) => {
+  /* const handleAdd = (id, newData, section) => {
     newData.id = section === 'employee-directory' ? employeeData.length + 1 : section === 'attendance-records' ? attendanceData.length + 1 : leaveData.length + 1;
+    if (section === 'attendance-records') {
+      axios.post("http://127.0.0.1:5000/attendance", { userId: id, status: status })
+      setAttendanceData([...attendanceData, newData]);
+    }
 
     if (section === 'employee-directory') {
       setEmployeeData([...employeeData, newData]);
@@ -174,7 +189,7 @@ const Dashboard = () => {
         {activeSection === 'employee-directory' && (
           <section id="employee-directory">
             <h2>Employee Directory</h2>
-            <div class="employee-directory-controls">
+            <div className="employee-directory-controls">
               <Link to='/createUser'>
                 <button>Create User</button>
               </Link>
@@ -186,12 +201,17 @@ const Dashboard = () => {
                     <p>Email: {item.email}</p>
                     <p>Role: {item.role}</p>
                     <p>Job: {item.job}</p>
+                    <p>Id: {item._id}</p>
                     <span>
                       <Link to={`/editUser/${item._id}`}>
-                        <button type="button" class="btn btn-primary">Edit</button>
+                        <button type="button" className="btn btn-primary">Edit</button>
                       </Link>
 
-                      <button type="button" class="btn btn-danger" onClick={() => handleDelete(`${item._id}`, "employee-directory")}>Delete</button>
+                      <Link to={`/attendance/${item._id}`}>
+                        <button type="button" className="btn btn-primary" onClick={() => handleSectionClick("attendance-records")}>View Attendance</button>
+                      </Link>
+
+                      <button type="button" className="btn btn-danger" onClick={() => handleDelete(`${item._id}`, "employee-directory")}>Delete</button>
                     </span>
                   </li>
                 )
@@ -203,7 +223,7 @@ const Dashboard = () => {
         {activeSection === 'attendance-records' && (
           <section id="attendance-records">
             <h2>Attendance Records</h2>
-            <button onClick={() => handleAdd()}>Add Record</button>
+            <button /* onClick={() => handleAdd()} */>Add Record</button>
             {/* {attenData.map((item) => (
               <div key={item._id}>
                 <p>Status: {item.status}</p>

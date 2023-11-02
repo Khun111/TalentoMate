@@ -67,6 +67,7 @@ const SignIn = () => {
               </div>
               <div className="form-group">
                 <select name="role" onChange={handleChange} required>
+                  <option selected disabled>Select Role</option>
                   <option value="admin">Admin</option>
                   <option value="employee">Employee</option>
                 </select>
