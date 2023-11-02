@@ -1,6 +1,7 @@
 /**
  * Start server
  */
+import 'dotenv/config';
 import express from "express";
 import swaggerUi from "swagger-ui-express"
 import swaggerJSDoc from 'swagger-jsdoc';
@@ -12,7 +13,11 @@ import cors from 'cors'
 //import authRouter from "./authRoutes"
 
 import mongoose from 'mongoose';
+
 mongoose.connect('mongodb+srv://<user>:<password>@<clustername>/<dbName>').then(() => console.log('Connected mongoose')).catch(err => console.error(err));
+
+
+
 
 const app = express();
 app.use(cors());
