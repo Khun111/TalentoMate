@@ -14,7 +14,7 @@ import cors from 'cors'
 
 import mongoose from 'mongoose';
 
-mongoose.connect('mongodb+srv://<user>:<password>@<clustername>/<dbName>').then(() => console.log('Connected mongoose')).catch(err => console.error(err));
+mongoose.connect(process.env.MONGO_URI).then(() => console.log('Connected mongoose')).catch(err => console.error(err));
 
 
 
