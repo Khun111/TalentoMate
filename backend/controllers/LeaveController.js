@@ -14,12 +14,14 @@ class LeaveControlller {
      */
     static async create(req, res) {
         const { userId, start_date, end_date, reason } = req.body;
+        console.log("req.body: ", req.body)
         try {
             const employee = await User.findById(userId);
-            const leave = new Leave({ user: employee._id, start_date, end_date, reason });
+            console.log("employee._id.toString(): ", employee._id.toString())
+            const leave = new Leave({ user: employee._id.toString(), start_date, end_date, reason });
             await leave.save();
-            console.log(leave);
-            employee.leaveRequests.push(leave._id);
+            console.log("Leave data", leave);
+            employee.leaveRequests.push(leave._id.toString());
             await employee.save();
             res.status(201).json({ leave });
         } catch (error) {
@@ -42,9 +44,10 @@ class LeaveControlller {
     }
 
     static async read(req, res) {
-        const { userId } = req.body;
+        const { id } = req.params;
+        console.log("id from frontend: ", id)
         try {
-            const employee = await User.findById(userId).populate('leaveRequests');
+            const employee = await User.findById(id).populate('leaveRequests');
             console.log(employee);
             const leave = employee.leaveRequests;
             res.status(200).json({ leave });

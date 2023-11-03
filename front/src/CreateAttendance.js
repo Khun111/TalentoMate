@@ -14,10 +14,10 @@ function CreateAttendance() {
         axios.post("http://127.0.0.1:5000/attendance", newData)
             .then(res => {
                 console.log(res)
+                setValues({ status: '' });
                 navigate('/dashboard/employee')
             })
             .catch(err => console.log(err))
-        setValues([...values, newData]);
     };
 
     /* const createAttendance = () => {

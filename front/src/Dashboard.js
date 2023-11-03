@@ -76,7 +76,7 @@ const Dashboard = () => {
   }; */
 
   // Leave Requests
-  const [leavedata, setLeaveData] = useState([]);
+  /* const [leavedata, setLeaveData] = useState([]);
 
   useEffect(() => {
     leaveDirData();
@@ -89,7 +89,7 @@ const Dashboard = () => {
     } catch (err) {
       console.error(err)
     }
-  }
+  } */
 
   const handleSectionClick = (section) => {
     setActiveSection(section);
@@ -211,6 +211,10 @@ const Dashboard = () => {
                         <button type="button" className="btn btn-primary" onClick={() => handleSectionClick("attendance-records")}>View Attendance</button>
                       </Link>
 
+                      <Link to={`/leaverequest/${item._id}`}>
+                        <button type="button" calssName="btn btn-primary">Leave Records</button>
+                      </Link>
+
                       <button type="button" className="btn btn-danger" onClick={() => handleDelete(`${item._id}`, "employee-directory")}>Delete</button>
                     </span>
                   </li>
@@ -237,10 +241,10 @@ const Dashboard = () => {
         {activeSection === 'leave-requests' && (
           <section id="leave-requests">
             <h2>Leave Requests</h2>
-            <button>
-              Add Request
-            </button>
-            {leavedata.map((item) => (
+            <Link to={'/leaveRequest'}>
+              <button>View Leave Requests</button>
+            </Link>
+            {/* {leavedata.map((item) => (
               <div className="leave-entry" key={item.id}>
                 <strong>{item.name}</strong>
                 <p>Start Date: {item.startDate}</p>
@@ -248,7 +252,7 @@ const Dashboard = () => {
                 <button>Edit</button>
                 <button>Delete</button>
               </div>
-            ))}
+            ))} */}
           </section>
         )}
       </div>

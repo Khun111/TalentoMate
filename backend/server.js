@@ -17,8 +17,6 @@ import mongoose from 'mongoose';
 mongoose.connect(process.env.MONGO_URI).then(() => console.log('Connected mongoose')).catch(err => console.error(err));
 
 
-
-
 const app = express();
 app.use(cors());
 const options = {
