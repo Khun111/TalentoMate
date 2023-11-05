@@ -58,6 +58,11 @@ function LeaveRequest() {
     }
 
     return (
+        <div className="container">
+      <div className="row">
+        <div className="col-md-6 offset-md-3">
+          <div className="login-container">
+            <h2 className="text-center mb-4">Forgot Password ?</h2>
         <form>
             <section id="leave-records">
                 <h2>Leave Records</h2>
@@ -66,29 +71,36 @@ function LeaveRequest() {
                 </Link>
                 {data.map((item) => (
                     <div key={item._id}>
-                        <label htmlFor='username'>User Name:</label>
-                        <input type='text' value={user ? user.name : ''}></input>
-                        <label htmlFor='useremail'>User Email:</label>
-                        <input type='email' value={user ? user.email : ''}></input>
-                        <label htmlFor='userjob'>Job Description:</label>
-                        <input type='text' value={user ? user.job : ''}></input>
-                        <label htmlFor='userrole'>Role</label>
-                        <input type='text' value={user ? user.role : ''}></input>
-                        <label htmlFor='createdAt'>Leave CreatedAt:</label>
-                        <input type='text' value={item.createdAt} ></input>
-                        <label htmlFor='startdate'>Leave Start Date:</label>
-                        <input type='date' value={item.start_date} ></input>
-                        <label htmlFor='enddate'>Leave End Date:</label>
-                        <input type='date' value={item.end_date} ></input>
-                        <label htmlFor='reason'>Reason:</label>
-                        <input type='text' value={item.reason} ></input>
+                        <div class="form-group">
+                            <label htmlFor='createdAt'>Leave CreatedAt:</label>
+                            <input type='text' value={item.createdAt} ></input>
+                        </div>
+                        <div class="form-group">
+                            <label htmlFor='startdate'>Leave Start Date:</label>
+                            <input type='date' value={item.start_date} ></input>
+                        </div>
+                        <div class="form-group">
+                            <label htmlFor='enddate'>Leave End Date:</label>
+                            <input type='date' value={item.end_date} ></input>
+                        </div>
+                        <div class="form-group">
+                            <label htmlFor='reason'>Reason:</label>
+                            <input type='text' value={item.reason} ></input>
+                        </div>
 
-                        <button type="button" className="btn btn-primary" onClick={(e) => handleDelete(`${item._id}`)}>Delete Leave Request</button>
-                        <button type="button" className="btn btn-primary" onClick={(e) => handleEdit(`${item._id}`)}>Edit Leave Request</button>
+                        <button type="button" className="btn btn-primary btn-block" onClick={(e) => handleDelete(`${item._id}`)}>Delete Leave Request</button>
+                        <button type="button" className="btn btn-primary btn-block" onClick={(e) => handleEdit(`${item._id}`)}>Edit Leave Request</button>
                     </div>
                 ))}
             </section>
         </form>
+        <div className="text-center mt-3">
+              <h3>Leave Requests for {user.name}</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     )
 }
 
