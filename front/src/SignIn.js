@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import './SignIn.css';
+import { Link } from 'react-router-dom';
 
 const SignIn = () => {
   const [formData, setFormData] = useState({
@@ -33,7 +34,12 @@ const SignIn = () => {
     
     try {
       const response = await axios.post("http://localhost:5000/login", adminData);
+      if (adminData.role === "admin") {
       navigate('/dashboard');
+      }
+      if (adminData.role === "employee") {
+        navigate('/dashboard')
+      }
       console.log(response);
     } catch (error) {
       console.error(error.response.data);
@@ -75,7 +81,10 @@ const SignIn = () => {
               <button type="submit" className="btn btn-primary btn-block">Sign In</button>
             </form>
             <div className="text-center mt-3">
-              <a href="https://example.com">Forgot Password?</a>
+              <Link to={'/forgotPassword'}>
+                <button type="submit">Forgot Password?</button>
+              </Link>
+              <a href="https://example.com"></a>
             </div>
           </div>
         </div>

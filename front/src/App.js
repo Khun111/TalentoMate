@@ -15,6 +15,9 @@ import ViewAttendance from './ViewAttendance';
 import EditAttendance from './EditAttendance';
 import LeaveRequest from './LeaveRequest';
 import CreateLeaveRequest from './CreateLeaveRequest';
+import ForgotPassword from './ForgotPassword';
+import ResetPassword from './ResetPassword';
+import EmployeeDashboard from './EmployeeDashboard';
 // onClick={() => handleAdd()}
 
 const App = () => {
@@ -34,12 +37,14 @@ const App = () => {
       {/* Authentication Routes */}
       <Route path="/signin" element={<SignIn />} />
       <Route path="/signup" element={<SignUp />} />
+      <Route path="/forgotPassword" element={<ForgotPassword />} />
+      <Route path="/resetPassword/:token" element={<ResetPassword />} />
       {/* DashBoard Routes */}
       <Route path="/dashboard/*" element={<Dashboard />} />
       <Route path="/aboutus" element={<AboutUs />} />
       <Route path="/services" element={<Services />} />
       <Route path="/contact" element={<Contact />} />
-      {/* <Route path="/dashboard" component={EmployeeDashboard} /> */}
+      <Route path="/empdashboard" element={<EmployeeDashboard/>} />
     </Routes>
   );
 };

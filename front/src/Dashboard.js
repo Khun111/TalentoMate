@@ -173,7 +173,7 @@ const Dashboard = () => {
               You are now in the heart of your HR management. From this dashboard, you can efficiently manage your employee data, attendance records, and leave requests.
             </p>
             <div className="dashboard-content">
-              {data.map((item, index) => {
+              {data.map((item,) => {
                 return (
                   <li key={item.id} className="dashboard-box">
                     <strong>Name: {item.name}</strong>
