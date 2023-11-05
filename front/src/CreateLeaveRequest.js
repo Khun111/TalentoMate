@@ -39,18 +39,38 @@ function CreateLeaveRequest() {
 
     return (
         <div>
-            <h1>CreateLeaveRequest</h1>
+    <div className="container">
+      <div className="row">
+        <div className="col-md-6 offset-md-3">
+          <div className="login-container">
+            <h2 className="text-center mb-4">Forgot Password ?</h2>
             <form onSubmit={handleSubmit}>
-                <label htmlFor='userId'>UserId:</label>
-                <input type='text' value={values.userId} disabled></input>
-                <label htmlFor='start_date'>Start Date: </label>
-                <input type='date' placeholder='Select Start Date' onChange={handleChange} name='start_date' value={values.start_date}></input>
-                <label htmlFor='end_date'>End Date: </label>
-                <input type='date' placeholder='Select End Date' onChange={handleChange} name='end_date' value={values.end_date}></input>
-                <label htmlFor='reason'>Reason: </label>
-                <input type='text' placeholder='Enter Reason' onChange={handleChange} name='reason' value={values.reason}></input>
-                <button>Submit</button>
+                <div className="form-group">
+                    <label htmlFor='userId'>UserId:</label>
+                    <input className='form-control' type='text' value={values.userId} disabled></input>
+                </div>
+                <div className="form-group">
+                    <label htmlFor='start_date'>Start Date: </label>
+                    <input className='form-control' type='date' placeholder='Select Start Date' onChange={handleChange} name='start_date' value={values.start_date}></input>
+                </div>
+                <div class="form-group">
+                    <label htmlFor='end_date'>End Date: </label>
+                    <input className='form-control' type='date' placeholder='Select End Date' onChange={handleChange} name='end_date' value={values.end_date}></input>
+                </div>
+                <div className="form-group">
+                    <label htmlFor='reason'>Reason: </label>
+                    <input className='form-control' type='text' placeholder='Enter Reason' onChange={handleChange} name='reason' value={values.reason}></input>
+                </div>
+                <button className='btn btn-primary btn-block'>Submit</button>
             </form>
+            <div className="text-center mt-3">
+                <h3>Create Leave Request</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+            
         </div>
     )
 }

@@ -13,6 +13,7 @@ class EmployeeController {
     static async create(req, res) {
 
         const { name, job, email, password } = req.body;
+        console.log(req.body);
         try {
             const hashedPassword = await bcrypt.hash(password, 10);
             const user = new User({ name, job, email, password: hashedPassword, role: 'employee' });

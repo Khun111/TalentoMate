@@ -40,10 +40,15 @@ function CreateAttendance() {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <div>
+    <div className="container">
+      <div className="row">
+        <div className="col-md-6 offset-md-3">
+          <div className="login-container">
+            <h2 className="text-center mb-4">Forgot Password ?</h2>
+            <form onSubmit={handleSubmit}>
+            <div className='form-group'>
                 <label htmlFor="status">Status:</label>
-                <select name="status" onChange={handleChange} required>
+                <select name="status" onChange={handleChange} className='form-control' required>
                     <option selected disabled>Mark Attendance</option>
                     <option value="Absent">Absent</option>
                     <option value="Present">Present</option>
@@ -51,6 +56,10 @@ function CreateAttendance() {
                 <button>Submit</button>
             </div>
         </form>
+            </div>
+          </div>
+        </div>
+      </div>
     )
 }
 

@@ -20,9 +20,10 @@ const EmployeeDirectory = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    console.log(userData);
     try {
       const response = await axios.post("http://127.0.0.1:5000/employee", userData);
+      console.log(response)
       navigate('/dashboard')
       setUserData({ name: '', job: '', email: '', password: '' })
     } catch (err) {
@@ -31,28 +32,40 @@ const EmployeeDirectory = () => {
   }
   return (
     <div>
-      <h2>Create User</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
+      <div className="container">
+      <div className="row">
+        <div className="col-md-6 offset-md-3">
+          <div className="login-container">
+            <h2 className="text-center mb-4">Create Employee</h2>
+        <form onSubmit={handleSubmit}>
+        <div className="form-group">
           <label>Name:</label>
-          <input type="text" name="name" value={userData.name} onChange={handleChange} />
+          <input type="text" name="name" className="form-control" onChange={handleChange} />
         </div>
-        <div>
+        <div className="form-group">
           <label>Email:</label>
-          <input type="email" name="email" value={userData.email} onChange={handleChange} />
+          <input type="email" name="email" className="form-control" onChange={handleChange} />
         </div>
-        <div>
+        <div className="form-group">
           <label>Job</label>
-          <input type="text" name="job" value={userData.job} onChange={handleChange} />
+          <input type="text" name="job" className="form-control" onChange={handleChange} />
         </div>
-        <div>
+        <div className="form-group">
           <label>Password</label>
-          <input type="password" name="password" value={userData.password} onChange={handleChange} />
+          <input type="password" name="password" className="form-control" onChange={handleChange} />
         </div>
-        <div>
-          <button type="submit">Create User</button>
+        <div className="form-group">
+          <button type="submit" className="btn btn-primary btn-block mx-auto">Create Employee</button>
         </div>
       </form>
+            <div className="text-center mt-3">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      <h2>Create User</h2>
+      
     </div>
   );
 };
