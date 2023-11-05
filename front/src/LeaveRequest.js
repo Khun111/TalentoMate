@@ -72,6 +72,9 @@ function LeaveRequest() {
                 {data.map((item) => (
                     <div key={item._id}>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> a634bb6 (improved styling of forms)
                         <div class="form-group">
                             <label htmlFor='createdAt'>Leave CreatedAt:</label>
                             <input type='text' value={item.createdAt} ></input>
@@ -88,6 +91,7 @@ function LeaveRequest() {
                             <label htmlFor='reason'>Reason:</label>
                             <input type='text' value={item.reason} ></input>
                         </div>
+<<<<<<< HEAD
 
                         <button type="button" className="btn btn-primary btn-block" onClick={(e) => handleDelete(`${item._id}`)}>Delete Leave Request</button>
                         <button type="button" className="btn btn-primary btn-block" onClick={(e) => handleEdit(`${item._id}`)}>Edit Leave Request</button>
@@ -116,6 +120,11 @@ function LeaveRequest() {
                             <button type="button" className="btn btn-primary" /* onClick={(e) => handleEdit(`${item._id}`)} */>Edit Leave Request</button>
                         </Link>
 >>>>>>> 76ff9f3 (Attendance and Leave Reqests API modification for Editing the records)
+=======
+
+                        <button type="button" className="btn btn-primary btn-block" onClick={(e) => handleDelete(`${item._id}`)}>Delete Leave Request</button>
+                        <button type="button" className="btn btn-primary btn-block" onClick={(e) => handleEdit(`${item._id}`)}>Edit Leave Request</button>
+>>>>>>> a634bb6 (improved styling of forms)
                     </div>
                 ))}
             </section>
