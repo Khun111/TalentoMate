@@ -38,8 +38,6 @@ function EditUser() {
 
         <form onSubmit={handleSubmit}>
             <div>
-                {/* <label htmlFor='name'>Name</label>
-                <input type='text' name='name' className='form-control' placeholder='Enter Name' value={values.name} onChange={(e => setValues({...values, name: e.target.value}))}></input> */}
                 <label htmlFor="name">Name:</label>
                 <input type="text" name="name" className="form-control" placeholder="Enter Name" value={values.name} disabled/>
                 <label htmlFor="email">email:</label>

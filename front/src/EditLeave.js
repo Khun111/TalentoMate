@@ -38,7 +38,6 @@ function EditLeave() {
                 <option value='Approved'>Approved</option>
                 <option value='Rejected'>Rejected</option>
             </select>
-            {/* <input type='text' name='status' onChange={handleChange}></input> */}
             <button>Submit</button>
         </form>
     )

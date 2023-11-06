@@ -23,15 +23,10 @@ function EditAttendance() {
         e.preventDefault()
         axios.put(`http://127.0.0.1:5000/attendance`, newData)
             .then(res => {
-                // navigate('dashboard/employee')
                 console.log(res)
                 navigate('/dashboard')
             })
             .catch(err => console.error(err.response.data))
-            /* const newAttendanceData = attenData.map((attendance) => {
-                attendance.id !== id ? attendance : newData
-            }) */
-            // setAttenData(newAttendanceData);
     };
     return (
         <form onSubmit={(e) => handleEdit(e, newData)}>

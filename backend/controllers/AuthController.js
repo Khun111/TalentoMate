@@ -56,6 +56,7 @@ class AuthController {
     */
     static async login(req, res) {
         const { email, password, role } = req.body;
+        console.log(req.body)
         try {
             const user = await User.findOne({ email, role });
             console.log(user)

@@ -29,27 +29,9 @@ function ViewAttendance() {
 
     const handleDelete = (id) => {
         axios.delete(`http://127.0.0.1:5000/attendance/${id}`)
-            .then((res) => {
-                navigate('/dashboard/employee')
-                /* console.log(res.status)
-                setAttenData(attenData.filter((item) => item.id !== id)); */
-            })
+            .then((res) => navigate('/dashboard/employee'))
             .catch(err => console.error(err))
     };
-
-    /* const handleAdd = (id, newData) => {
-        axios.post("http://127.0.0.1:5000/attendance", newData)
-            .then(res => console.log(res))
-            .catch(err => console.log(err))
-        setAttenData([...attendanceData, newData]);
-    }; */
-    
-    /* const handleLeave = (id) => {
-        const leaveData = { userId: id }
-        axios.get("http://127.0.0.1:5000/leave", leaveData)
-        .then(res => console.log("Leave Data", res))
-        .catch(err => console.error(err))
-    } */
 
     return (
         <section id="attendance-records">
@@ -67,7 +49,6 @@ function ViewAttendance() {
                         <button type="button" className='btn btn-primary'>Edit</button>
                     </Link>
                     <button type="button" className="btn btn-primary" onClick={() => handleDelete(`${item._id}`)}>Delete</button>
-                    {/* <button type="button" className="btn btn-primary" onClick={() => handleLeave(`${item._id}`)}>Leave Requests</button> */}
                 </div>
             ))}
         </section>

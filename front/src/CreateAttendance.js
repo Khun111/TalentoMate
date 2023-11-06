@@ -15,18 +15,11 @@ function CreateAttendance() {
             .then(res => {
                 console.log(res)
                 setValues({ status: '' });
-                navigate('/dashboard')
+                window.location.reload()
             })
             .catch(err => console.log(err))
     };
-
-    /* const createAttendance = () => {
-        console.log({ userId: id, status: values.status })
-        axios.post('http://127.0.0.1:5000/attendance', { userId: id, status: values.status })
-            .then((res) => console.log(res))
-            .catch((err) => console.error(err))
-    } */
-
+    
     const newData = { userId: id, status: values.status }
 
     const handleSubmit = async (e) => {

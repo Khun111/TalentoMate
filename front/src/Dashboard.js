@@ -3,16 +3,7 @@ import axios from 'axios';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import './Dashboard.css'; // Import the CSS for Dashboard
 import Logo from './Logo 1.png';
-import EmployeeDirectory from './EmployeeDirectory';
-import EditUser from './EditUser';
-import CreateAttendance from './CreateAttendance';
-/* import D3Chart from './D3Chart.js';
-import D3ChartLeave from './D3ChartLeave.js';
-import JohnDoeImage from './JohnDoe.jpg';
-import JaneSmithImage from './JaneSmith.jpg';
-import AliceJohnsonImage from './AliceJohnson.jpg';
-import BobWilsonImage from './BobWilson.jpg';
-import EvaGreenImage from './EvaGreen.jpg'; */
+
 
 const Dashboard = () => {
   const [activeSection, setActiveSection] = useState('dashboard');
@@ -51,47 +42,6 @@ const Dashboard = () => {
       console.error(err)
     }
   };
-  
-  // <Route path="/createAttendance/:id" element={<CreateAttendance />} />
-
-  // Attendance Records
-  /* const [attenData, setAttenData] = useState({
-    userId: ''
-  });
-
-  useEffect(() => {
-    attendanceData();
-  }, []);
-
-  This API is failing.
-  const attendanceData = async () => {
-    try {
-      data.map((employee) => {
-
-      })
-      const response = await axios.get('http://127.0.0.1:5000/attendance')
-      setAttenData(response.data)
-      console.log('Attendance data', response.data)
-    } catch (err) {
-      console.log('Attendance error', err)
-    }
-  }; */
-
-  // Leave Requests
-  /* const [leavedata, setLeaveData] = useState([]);
-
-  useEffect(() => {
-    leaveDirData();
-  }, []);
-
-  const leaveDirData = async () => {
-    try {
-      const response = await axios.get("http://127.0.0.1:5000/leave");
-      setLeaveData(response.data)
-    } catch (err) {
-      console.error(err)
-    }
-  } */
 
   const handleSectionClick = (section) => {
     setActiveSection(section);
@@ -103,14 +53,10 @@ const Dashboard = () => {
       .then((res) => {
         console.log(res.status)
         setEmpData(empData.filter((item) => item.id !== id));
-        navigate('dashboard')
+        window.location.reload()
       })
       .catch(err => console.error(err))
-    } /* else if (section === 'attendance-records') {
-      setAttendanceData(attendanceData.filter((item) => item.id !== id));
-    } else if (section === 'leave-requests') {
-      setLeaveData(leaveData.filter((item) => item.id !== id));
-    } */
+    } 
   };
 
   return (
@@ -118,9 +64,6 @@ const Dashboard = () => {
       <div className="sidebar">
         <div className="header">
           <img src={Logo} alt="TalentoMate Logo" className="logo" />
-          <div className="search-box">
-            <input type="text" placeholder="Search..." className="form-control" />
-          </div>
         </div>
         <nav>
           <ul className="nav flex-column">
@@ -132,16 +75,6 @@ const Dashboard = () => {
             <li className="nav-item">
               <Link to="/dashboard/employee" className="nav-link" onClick={() => handleSectionClick('employee-directory')}>
                 Employee Directory
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/dashboard/attendance" className="nav-link" onClick={() => handleSectionClick('attendance-records')}>
-                Attendance Records
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/dashboard/leave" className="nav-link" onClick={() => handleSectionClick('leave-requests')}>
-                Leave Requests
               </Link>
             </li>
             <li className="nav-item">
@@ -181,7 +114,6 @@ const Dashboard = () => {
                 <button>Create User</button>
               </Link>
               {empData.map((item, index) => {
-                // console.log(item)
                 return (
                   <li key={item._id} className="dashboard-box">
                     <strong>Name: {item.name}</strong>
@@ -208,38 +140,6 @@ const Dashboard = () => {
                 )
               })}
             </div>
-          </section>
-        )}
-
-        {activeSection === 'attendance-records' && (
-          <section id="attendance-records">
-            <h2>Attendance Records</h2>
-            <button /* onClick={() => handleAdd()} */>Add Record</button>
-            {/* {attenData.map((item) => (
-              <div key={item._id}>
-                <p>Status: {item.status}</p>
-                <button>Edit</button>
-                <button>Delete</button>
-              </div>
-            ))} */}
-          </section>
-        )}
-
-        {activeSection === 'leave-requests' && (
-          <section id="leave-requests">
-            <h2>Leave Requests</h2>
-            <Link to={'/leaveRequest'}>
-              <button>View Leave Requests</button>
-            </Link>
-            {/* {leavedata.map((item) => (
-              <div className="leave-entry" key={item.id}>
-                <strong>{item.name}</strong>
-                <p>Start Date: {item.startDate}</p>
-                <p>End Date: {item.endDate}</p>
-                <button>Edit</button>
-                <button>Delete</button>
-              </div>
-            ))} */}
           </section>
         )}
       </div>

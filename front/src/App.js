@@ -15,12 +15,12 @@ import ViewAttendance from './ViewAttendance';
 import EditAttendance from './EditAttendance';
 import LeaveRequest from './LeaveRequest';
 import CreateLeaveRequest from './CreateLeaveRequest';
-import ForgotPassword from './ForgotPassword';
+import EditLeave from './EditLeave';
+/* import ForgotPassword from './ForgotPassword';
 import ResetPassword from './ResetPassword';
 import EmployeeDashboard from './EmployeeDashboard';
 import ResetLink from './ResetLink';
-import ResetSuccess from './ResetSuccess';
-import EditLeave from './EditLeave';
+import ResetSuccess from './ResetSuccess'; */
 // onClick={() => handleAdd()}
 
 const App = () => {
@@ -41,18 +41,11 @@ const App = () => {
       {/* Authentication Routes */}
       <Route path="/signin" element={<SignIn />} />
       <Route path="/signup" element={<SignUp />} />
-      <Route path="/forgotPassword" element={<ForgotPassword />} />
-      <Route path="/resetPassword/:token" element={<ResetPassword />} />
-      <Route path="/resetLink" element={<ResetLink />} />
-      <Route path="/resetSuccess" element={<ResetSuccess />} />
-      <Route path="/resetLink" element={<ResetLink />} />
-      <Route path="/resetSuccess" element={<ResetSuccess />} />
       {/* DashBoard Routes */}
       <Route path="/dashboard/*" element={<Dashboard />} />
       <Route path="/aboutus" element={<AboutUs />} />
       <Route path="/services" element={<Services />} />
       <Route path="/contact" element={<Contact />} />
-      <Route path="/empdashboard" element={<EmployeeDashboard/>} />
     </Routes>
   );
 };
