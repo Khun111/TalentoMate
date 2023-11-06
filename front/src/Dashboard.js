@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import './Dashboard.css'; // Import the CSS for Dashboard
 import Logo from './Logo 1.png';
 import EmployeeDirectory from './EmployeeDirectory';
@@ -16,6 +16,7 @@ import EvaGreenImage from './EvaGreen.jpg'; */
 
 const Dashboard = () => {
   const [activeSection, setActiveSection] = useState('dashboard');
+  const navigate = useNavigate();
 
   // Dashboard Data
   const [data, setdata] = useState([]);
@@ -96,28 +97,13 @@ const Dashboard = () => {
     setActiveSection(section);
   };
 
-  /* const handleAdd = (id, newData, section) => {
-    newData.id = section === 'employee-directory' ? employeeData.length + 1 : section === 'attendance-records' ? attendanceData.length + 1 : leaveData.length + 1;
-    if (section === 'attendance-records') {
-      axios.post("http://127.0.0.1:5000/attendance", { userId: id, status: status })
-      setAttendanceData([...attendanceData, newData]);
-    }
-
-    if (section === 'employee-directory') {
-      setEmployeeData([...employeeData, newData]);
-    } else if (section === 'attendance-records') {
-      setAttendanceData([...attendanceData, newData]);
-    } else if (section === 'leave-requests') {
-      setLeaveData([...leaveData, newData]);
-    }
-  }; */
-
   const handleDelete = (id, section) => {
     if (section === 'employee-directory') {
       axios.delete(`http://127.0.0.1:5000/employee/${id}`)
       .then((res) => {
         console.log(res.status)
         setEmpData(empData.filter((item) => item.id !== id));
+        navigate('dashboard')
       })
       .catch(err => console.error(err))
     } /* else if (section === 'attendance-records') {

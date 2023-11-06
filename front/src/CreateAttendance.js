@@ -15,7 +15,7 @@ function CreateAttendance() {
             .then(res => {
                 console.log(res)
                 setValues({ status: '' });
-                navigate('/dashboard/employee')
+                navigate('/dashboard')
             })
             .catch(err => console.log(err))
     };

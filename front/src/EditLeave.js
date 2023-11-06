@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 function EditLeave() {
     const { id } = useParams();
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         id: id,
         status: ''
@@ -21,7 +22,10 @@ function EditLeave() {
         e.preventDefault()
         console.log(newData)
         axios.put('http://127.0.0.1:5000/leave', newData)
-        .then(res => console.log(res))
+        .then(res => {
+            console.log(res)
+            navigate('/dashboard')
+        })
         .catch (err => console.log(err))
     }
 

@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 function EditAttendance() {
     const { id } = useParams()
+    const navigate = useNavigate()
     const [formData, setFormData] = useState({
         status: '',
         id: id
@@ -22,8 +23,9 @@ function EditAttendance() {
         e.preventDefault()
         axios.put(`http://127.0.0.1:5000/attendance`, newData)
             .then(res => {
-                // navigate(`/editAttendance/${id}`)
+                // navigate('dashboard/employee')
                 console.log(res)
+                navigate('/dashboard')
             })
             .catch(err => console.error(err.response.data))
             /* const newAttendanceData = attenData.map((attendance) => {
