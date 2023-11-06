@@ -6,7 +6,7 @@ function EditLeave() {
     const { id } = useParams();
     const [formData, setFormData] = useState({
         id: id,
-        data: ''
+        status: ''
     })
 
     const handleChange = (e) => {
@@ -14,7 +14,7 @@ function EditLeave() {
         setFormData({ ...formData, [name]: value });
     };
 
-    const newData = { id: formData.id, data: formData.data }
+    const newData = { id: formData.id, status: formData.status }
 
     const handleEdit = (e, newData) => {
         console.log(e)
@@ -27,8 +27,14 @@ function EditLeave() {
 
     return (
         <form onSubmit={(e) => handleEdit(e, newData)}>
-            <label htmlFor='reason'>Reason: </label>
-            <input type='text' name='data' onChange={handleChange}></input>
+            <label htmlFor='status'>Status: </label>
+            <select onChange={handleChange} name='status'>
+                <option selected disabled>Select Status: </option>
+                <option value='Pending'>Pending</option>
+                <option value='Approved'>Approved</option>
+                <option value='Rejected'>Rejected</option>
+            </select>
+            {/* <input type='text' name='status' onChange={handleChange}></input> */}
             <button>Submit</button>
         </form>
     )

@@ -28,11 +28,10 @@ class AttendanceControlller {
     }
 
     static async update (req, res) {
-        const {id} = req.params
-            , options = {new: true}
-            , data = req.body;
+        const { id, status } = req.body;
+        console.log(id, status)
         try {
-            const attendance = await Attendance.findByIdAndUpdate(id, data, options)
+            const attendance = await Attendance.findByIdAndUpdate(id, { status })
             if (!attendance) res.status(404).json({error: 'Not Found'});
             res.status(200).json({attendance})
         } catch (error) {

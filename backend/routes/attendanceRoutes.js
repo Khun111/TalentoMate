@@ -12,7 +12,7 @@ const router = Router();
 // }
 
 router.post('/attendance', AttendanceController.create)
-router.patch('/attendance/:id', AttendanceController.update)
+router.put('/attendance', AttendanceController.update)
 router.get('/attendance/:id', AttendanceController.read)
 router.delete('/attendance/:id', AttendanceController.deleteOne)
 

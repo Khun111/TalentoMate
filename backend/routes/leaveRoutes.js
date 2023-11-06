@@ -12,7 +12,7 @@ const router = Router();
 // }
 
 router.post('/leave', LeaveController.create)
-router.patch('/leave/:id', LeaveController.update)
+router.put('/leave', LeaveController.update)
 router.get('/leave/:id', LeaveController.read)
 router.delete('/leave/:id', LeaveController.deleteOne)
 

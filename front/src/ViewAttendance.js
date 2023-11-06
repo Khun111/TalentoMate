@@ -6,6 +6,7 @@ function ViewAttendance() {
     const [attenData, setAttenData] = useState([])
     const { id } = useParams()
     const [user, setUser] = useState(null)
+    const [formdata, setFormData] = useState([])
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -42,19 +43,6 @@ function ViewAttendance() {
             .catch(err => console.log(err))
         setAttenData([...attendanceData, newData]);
     }; */
-
-    /* const handleEdit = (id, newData) => {
-        axios.patch(`http://127.0.0.1:5000/attendance/${id}`, newData)
-            .then(res => {
-                navigate(`/editAttendance/${id}`)
-                console.log(res)
-            })
-            .catch(err => console.error(err))
-        const newAttendanceData = attenData.map((attendance) => {
-            attendance.id !== id ? attendance : newData
-        })
-        setAttenData(newAttendanceData);
-    }; */
     
     /* const handleLeave = (id) => {
         const leaveData = { userId: id }
@@ -75,7 +63,9 @@ function ViewAttendance() {
                     <p>Created At: {item.createdAt}</p>
                     <p>Name: {user ? user.name : ''}</p>
                     <p>Email: {user ? user.email : ''}</p>
-                    {/* <button type="button" className='btn btn-primary' onClick={() => handleEdit(`${item._id}`)}>Edit</button> */}
+                    <Link to={`/editAttendance/${item._id}`}>
+                        <button type="button" className='btn btn-primary'>Edit</button>
+                    </Link>
                     <button type="button" className="btn btn-primary" onClick={() => handleDelete(`${item._id}`)}>Delete</button>
                     {/* <button type="button" className="btn btn-primary" onClick={() => handleLeave(`${item._id}`)}>Leave Requests</button> */}
                 </div>

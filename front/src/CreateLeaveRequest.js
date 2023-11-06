@@ -29,7 +29,8 @@ function CreateLeaveRequest() {
         setValues({...values, [name]: value});
     }
 
-    const newData = { userId: values.userId, start_date: values.start_date, end_date: values.end_date, reason: values.reason }
+    const newData = { userId: values.userId, start_date: values.start_date, end_date: values.end_date, reason: values.reason, status: 'Pending' }
+    console.log(newData)
 
     const handleSubmit = async (e) => {
         e.preventDefault();

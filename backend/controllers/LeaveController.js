@@ -13,12 +13,12 @@ class LeaveControlller {
      * function to create Leave record
      */
     static async create(req, res) {
-        const { userId, start_date, end_date, reason } = req.body;
+        const { userId, start_date, end_date, reason, status } = req.body;
         console.log("req.body: ", req.body)
         try {
             const employee = await User.findById(userId);
             console.log("employee._id.toString(): ", employee._id.toString())
-            const leave = new Leave({ user: employee._id.toString(), start_date, end_date, reason });
+            const leave = new Leave({ user: employee._id.toString(), start_date, end_date, reason, status });
             await leave.save();
             console.log("Leave data", leave);
             employee.leaveRequests.push(leave._id.toString());
@@ -30,13 +30,14 @@ class LeaveControlller {
     }
 
     static async update(req, res) {
-        const { id } = req.params
+        const { id, status } = req.body
             , options = { new: true }
-            , data = req.body;
-            console.log(id, options, data);
+            console.log(id, options);
+            console.log(status);
         try {
-            const leave = await Leave.findByIdAndUpdate(id, data, options)
+            const leave = await Leave.findByIdAndUpdate(id, { status }, options)
             if (!leave) res.status(404).json({ error: 'Not Found' });
+            await leave.save();
             res.status(200).json({ leave })
         } catch (error) {
             res.status(500).json({ error: error.message })

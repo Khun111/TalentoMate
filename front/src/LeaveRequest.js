@@ -52,10 +52,10 @@ function LeaveRequest() {
         })
     } */
 
-    const handleEdit = async (id) => {
+    /* const handleEdit = async (id) => {
         const response = await axios.patch(`http://127.0.0.1:5000/leave/${id}`)
         console.log("handleEdit function id: ", response)
-    }
+    } */
 
     return (
         <div className="container">
@@ -71,6 +71,7 @@ function LeaveRequest() {
                 </Link>
                 {data.map((item) => (
                     <div key={item._id}>
+<<<<<<< HEAD
                         <div class="form-group">
                             <label htmlFor='createdAt'>Leave CreatedAt:</label>
                             <input type='text' value={item.createdAt} ></input>
@@ -90,6 +91,31 @@ function LeaveRequest() {
 
                         <button type="button" className="btn btn-primary btn-block" onClick={(e) => handleDelete(`${item._id}`)}>Delete Leave Request</button>
                         <button type="button" className="btn btn-primary btn-block" onClick={(e) => handleEdit(`${item._id}`)}>Edit Leave Request</button>
+=======
+                        <label htmlFor='username'>User Name:</label>
+                        <input type='text' value={user ? user.name : ''}></input>
+                        <label htmlFor='useremail'>User Email:</label>
+                        <input type='email' value={user ? user.email : ''}></input>
+                        <label htmlFor='userjob'>Job Description:</label>
+                        <input type='text' value={user ? user.job : ''}></input>
+                        <label htmlFor='userrole'>Role</label>
+                        <input type='text' value={user ? user.role : ''}></input>
+                        <label htmlFor='createdAt'>Leave CreatedAt:</label>
+                        <input type='text' value={item.createdAt} ></input>
+                        <label htmlFor='startdate'>Leave Start Date:</label>
+                        <input type='date' value={item.start_date} ></input>
+                        <label htmlFor='enddate'>Leave End Date:</label>
+                        <input type='date' value={item.end_date} ></input>
+                        <label htmlFor='reason'>Reason:</label>
+                        <input type='text' value={item.reason} ></input>
+                        <label htmlFor='status'>Status: </label>
+                        <input type='text' value={item.status} ></input>
+
+                        <button type="button" className="btn btn-primary" onClick={(e) => handleDelete(`${item._id}`)}>Delete Leave Request</button>
+                        <Link to={`/editLeaveRequest/${item._id}`}>
+                            <button type="button" className="btn btn-primary" /* onClick={(e) => handleEdit(`${item._id}`)} */>Edit Leave Request</button>
+                        </Link>
+>>>>>>> 76ff9f3 (Attendance and Leave Reqests API modification for Editing the records)
                     </div>
                 ))}
             </section>

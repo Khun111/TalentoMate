@@ -42,7 +42,7 @@ const SignIn = () => {
       }
       console.log(response);
     } catch (error) {
-      console.error(error.response.data);
+      console.error(error);
     }
 
   //   {

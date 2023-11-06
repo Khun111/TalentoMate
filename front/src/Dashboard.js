@@ -27,6 +27,7 @@ const Dashboard = () => {
   const dashData = async () => {
     try {
       const response = await axios.get("http://127.0.0.1:5000/employee");
+      console.log(response)
       setdata(response.data.users)
       // console.log(response.data.users)
     } catch (err) {
