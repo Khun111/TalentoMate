@@ -65,7 +65,7 @@ class AuthController {
             const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET)
             console.log(token);
             redisClient.client.set(`auth_${token}`, user._id.toString(), 'EX', 60 * 60 * 24);
-            res.status(200).json({ token, role: user.role });
+            res.status(200).json({ token, user });
         } catch (error) {
             res.status(500).json({ error: error.message });
         }
