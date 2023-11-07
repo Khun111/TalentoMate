@@ -10,6 +10,7 @@ const SignIn = () => {
     password: '',
     role: ''
   });
+  const [user, setUser] = useState({})
   useEffect(() => {
     axios.get("http://localhost:5000/employee").then(response => console.log(response.data)).catch(error => console.log(error));
   }, [])
@@ -29,13 +30,33 @@ const SignIn = () => {
       password: formData.password,
       role: formData.role
     }
+    // console.log(formData.role);
+    console.log(adminData);
+    
+    try {
+      const response = await axios.post("http://localhost:5000/login", adminData);
+      setUser(response.data.user)
+      console.log(user._id);
+      if (user.role === "admin") {
+      navigate('/dashboard');
+      }
+      if (user.role === "employee") {
+        navigate(`/empDashboard/${user._id}`)
+      }
+      console.log(response);
+    } catch (error) {
+      console.error(error.response);
+    }
 
-    await axios.post("http://localhost:5000/login", adminData)
-      .then(res => {
-        navigate('/dashboard')
-        console.log(res)
-      })
-      .catch(err => console.log(err))
+  //   {
+  //     navigate('/signin');
+
+  //     Navigate to Dashboard on successful sign-in
+  //     navigate('/dashboard');
+  //   } else {
+      
+  //     Add logic to display an error message for invalname credentials if needed
+  //   }
   };
 
   return (

@@ -13,13 +13,9 @@ import cors from 'cors'
 //import authRouter from "./authRoutes"
 
 import mongoose from 'mongoose';
-<<<<<<< HEAD
 
 mongoose.connect(process.env.MONGO_URI).then(() => console.log('Connected mongoose')).catch(err => console.error(err));
 
-=======
-mongoose.connect(process.env.MONGO_URI).then(() => console.log('Connected mongoose')).catch(err => console.error(err));
->>>>>>> 691f178 (Updated the navigation for the Attendance and Leave records and placed the mongodb connection string in a .env file)
 
 const app = express();
 app.use(cors());

@@ -8,8 +8,7 @@ import { port } from '../server';
 import { ObjectId } from 'mongodb'
 
 const transporter = nodemailer.createTransport({
-    host: 'smtp.mailtrap.io',
-    port: 2525,
+    service: 'gmail',
     auth: {
         user: process.env.MAILTRAP_USER,
         pass: process.env.MAILTRAP_PASS
@@ -67,7 +66,7 @@ class AuthController {
             const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET)
             console.log(token);
             redisClient.client.set(`auth_${token}`, user._id.toString(), 'EX', 60 * 60 * 24);
-            res.status(200).json({ token, role: user.role });
+            res.status(200).json({ token, user });
         } catch (error) {
             res.status(500).json({ error: error.message });
         }
@@ -100,9 +99,9 @@ class AuthController {
             redisClient.client.set(key, user._id.toString(), 'EX', 60 * 60 * 24)
             const userId = await redisClient.client.get(key)
             console.log(userId);
-            const resetLink = `http://localhost:${port}/resetPassword/${token}`
+            const resetLink = `http://localhost:3000/resetPassword/${token}`
             const message = `Click here to reset your password ${resetLink}`
-            sendEmail('Password Reset', 'amure387@gmail.com', message)
+            sendEmail('Password Reset', email, message)
             res.status(200).json({ token })
         } catch (error) {
             res.status(500).json({ error: error.message })
