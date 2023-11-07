@@ -62,13 +62,13 @@ cd backend
 npm install
 ```
 
-3. Configure your MongoDB and Redis databases and update the configuration accordingly.
+4. Configure your MongoDB and Redis databases and update the configuration accordingly.
 
-4. Start the application:
+5. Start the application:
 
 ```npm start```
 
-5. Access the application by navigating to http://localhost:3000 in your web browser.
+6. Access the application by navigating to http://localhost:3000 in your web browser.
 
 ## Getting Started
 Once you have installed and run Talento Mate, you can begin by creating employee profiles, tracking attendance, and exploring the various features. Refer to the documentation for detailed usage instructions.
