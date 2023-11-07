@@ -17,16 +17,17 @@ function EditLeave() {
 
     const newData = { id: formData.id, status: formData.status }
 
-    const handleEdit = (e, newData) => {
+    const handleEdit = async (e, newData) => {
         console.log(e)
         e.preventDefault()
-        console.log(newData)
-        axios.put('http://127.0.0.1:5000/leave', newData)
-        .then(res => {
-            console.log(res)
-            navigate('/dashboard')
-        })
-        .catch (err => console.log(err))
+        
+        await axios.put('http://127.0.0.1:5000/leave', newData)
+            .then(res => {
+                console.log(res)
+                window.location.reload()
+                navigate(`/leaverequest/${id}`)
+            })
+            .catch(err => console.log(err))
     }
 
     return (

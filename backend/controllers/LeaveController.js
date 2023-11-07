@@ -36,11 +36,11 @@ class LeaveControlller {
             console.log(status);
         try {
             const leave = await Leave.findByIdAndUpdate(id, { status }, options)
-            if (!leave) res.status(404).json({ error: 'Not Found' });
+            if (!leave) return res.status(404).json({ error: 'Not Found' });
             await leave.save();
-            res.status(200).json({ leave })
+            return res.status(200).json({ leave })
         } catch (error) {
-            res.status(500).json({ error: error.message })
+            return res.status(500).json({ error: error.message })
         }
     }
 

@@ -58,7 +58,7 @@ const Dashboard = () => {
         <nav>
           <ul className="nav flex-column">
             <li className="nav-item">
-              <Link to={`/empdashboard/${data.id}`} className="nav-link">
+              <Link to={`/empDashboard/${id}`} className="nav-link">
                 Dashboard
               </Link>
             </li>
@@ -85,7 +85,7 @@ const Dashboard = () => {
           <section id="dashboard">
             <h2>Welcome to the Dashboard</h2>
             <p>
-              You are now in the heart of your HR management. From this dashboard, you can efficiently manage your employee data, attendance records, and leave requests.
+              Welcome {data.name}. Here are your details.
             </p>
             <div className="dashboard-content">
                     <strong>Name: {data.name}</strong>

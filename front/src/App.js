@@ -16,11 +16,11 @@ import EditAttendance from './EditAttendance';
 import LeaveRequest from './LeaveRequest';
 import CreateLeaveRequest from './CreateLeaveRequest';
 import EditLeave from './EditLeave';
-/* import ForgotPassword from './ForgotPassword';
+import ForgotPassword from './ForgotPassword';
 import ResetPassword from './ResetPassword';
 import EmployeeDashboard from './EmployeeDashboard';
 import ResetLink from './ResetLink';
-import ResetSuccess from './ResetSuccess'; */
+import ResetSuccess from './ResetSuccess';
 // onClick={() => handleAdd()}
 
 const App = () => {
@@ -37,10 +37,12 @@ const App = () => {
       {/* Leave Routes */}
       <Route path="/leaveRequest/:id" element={<LeaveRequest />} />
       <Route path="/createLeaveRequest/:id" element={<CreateLeaveRequest />} />
-      <Route path='editLeaveRequest/:id' element={<EditLeave />} />
+      <Route path='/editLeaveRequest/:id' element={<EditLeave />} />
       {/* Authentication Routes */}
       <Route path="/signin" element={<SignIn />} />
       <Route path="/signup" element={<SignUp />} />
+      <Route path="/forgotPassword" element={<ForgotPassword />} />
+      <Route path="/resetLink" element={<ResetLink />} />
       {/* DashBoard Routes */}
       <Route path="/dashboard/*" element={<Dashboard />} />
       <Route path="/aboutus" element={<AboutUs />} />

@@ -44,7 +44,7 @@ function CreateLeaveRequest() {
       <div className="row">
         <div className="col-md-6 offset-md-3">
           <div className="login-container">
-            <h2 className="text-center mb-4">Forgot Password ?</h2>
+            <h2 className="text-center mb-4">Create Leave Request</h2>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label htmlFor='userId'>UserId:</label>

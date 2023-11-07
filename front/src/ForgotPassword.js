@@ -29,7 +29,7 @@ const ForgotPassword = () => {
       console.log(response);
       navigate('/resetLink');
     } catch (error) {
-      console.error(error.response.data);
+      console.error(error.response);
     }
 
   //   {
@@ -56,9 +56,9 @@ const ForgotPassword = () => {
               </div>
               <button type="submit" className="btn btn-primary btn-block">Submit</button>
             </form>
-            <div className="text-center mt-3">
+            {/* <div className="text-center mt-3">
               <h3>Verify Your Email</h3>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

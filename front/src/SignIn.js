@@ -83,12 +83,12 @@ const SignIn = () => {
               </div>
               <button type="submit" className="btn btn-primary btn-block">Sign In</button>
             </form>
-            {/* <div className="text-center mt-3">
+            <div className="text-center mt-3">
               <Link to={'/forgotPassword'}>
-                <button type="submit">Forgot Password?</button>
+                <button type="submit" >Forgot Password?</button>
               </Link>
               <a href="https://example.com"></a>
-            </div> */}
+            </div>
           </div>
         </div>
       </div>
