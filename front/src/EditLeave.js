@@ -13,6 +13,7 @@ function EditLeave() {
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
+        console.log(formData)
     };
 
     const newData = { id: formData.id, status: formData.status }
@@ -24,7 +25,7 @@ function EditLeave() {
         axios.put('http://127.0.0.1:5000/leave', newData)
         .then(res => {
             console.log(res)
-            navigate('/dashboard')
+            navigate(`/leaveRequest/${id}`)
         })
         .catch (err => console.log(err))
     }

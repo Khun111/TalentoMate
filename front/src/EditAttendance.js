@@ -24,7 +24,7 @@ function EditAttendance() {
         axios.put(`http://127.0.0.1:5000/attendance`, newData)
             .then(res => {
                 console.log(res)
-                navigate('/dashboard')
+                navigate(`/attendance/${id}`)
             })
             .catch(err => console.error(err.response.data))
     };

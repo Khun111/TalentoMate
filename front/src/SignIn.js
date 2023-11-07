@@ -29,6 +29,21 @@ const SignIn = () => {
       password: formData.password,
       role: formData.role
     }
+    // console.log(formData.role);
+    console.log(adminData);
+    
+    try {
+      const response = await axios.post("http://localhost:5000/login", adminData);
+      if (adminData.role === "admin") {
+      navigate('/dashboard');
+      }
+      if (adminData.role === "employee") {
+        navigate('/dashboard')
+      }
+      console.log(response);
+    } catch (error) {
+      console.error(error);
+    }
 
     await axios.post("http://localhost:5000/login", adminData)
       .then(res => {
@@ -62,12 +77,12 @@ const SignIn = () => {
               </div>
               <button type="submit" className="btn btn-primary btn-block">Sign In</button>
             </form>
-            {/* <div className="text-center mt-3">
+            <div className="text-center mt-3">
               <Link to={'/forgotPassword'}>
                 <button type="submit">Forgot Password?</button>
               </Link>
               <a href="https://example.com"></a>
-            </div> */}
+            </div>
           </div>
         </div>
       </div>

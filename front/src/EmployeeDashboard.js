@@ -24,7 +24,7 @@ const EmployeeDashboard = () => {
     setActiveSection(section);
   };
 
-  const handleAdd = (newData, section) => {
+  /* const handleAdd = (newData, section) => {
     newData.id = section === 'attendance-records' ? attendanceData.length + 1 : leaveData.length + 1;
 
     if (section === 'attendance-records') {
@@ -32,15 +32,15 @@ const EmployeeDashboard = () => {
     } else if (section === 'leave-requests') {
       setLeaveData([...leaveData, newData]);
     }
-  };
+  }; */
 
-  const handleDelete = (id, section) => {
+  /* const handleDelete = (id, section) => {
     if (section === 'attendance-records') {
       setAttendanceData(attendanceData.filter((item) => item.id !== id));
     } else if (section === 'leave-requests') {
       setLeaveData(leaveData.filter((item) => item.id !== id));
     }
-  };
+  }; */
 
   return (
     <div className="dashboard-container">
