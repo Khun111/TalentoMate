@@ -77,4 +77,6 @@ Once you have installed and run Talento Mate, you can begin by creating employee
 Talento Mate is designed to be intuitive, but for detailed instructions on using the application, please consult the user manual included in the documentation folder. If you encounter any issues or have questions, please don't hesitate to reach out to our support team.
 
 ## Contributors
-- [Khun111](https://github.com/Khun111)
+- [Samuel Oluwatobi Amure](https://github.com/Khun111)
+- [Charity Muteti]()
+- [Malvin Muthuuri]()
