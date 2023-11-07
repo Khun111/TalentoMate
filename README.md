@@ -1,4 +1,4 @@
-# Talento Mate - Employee Management Web Application
+# TalentoMate - Employee Management Web Application
 
 Talento Mate is a comprehensive web application designed to streamline and simplify employee management processes. Whether you're a small startup or a large corporation, Talento Mate provides the tools you need to manage your workforce efficiently.
 
