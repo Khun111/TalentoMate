@@ -10,6 +10,7 @@ const SignIn = () => {
     password: '',
     role: ''
   });
+  const [user, setUser] = useState({})
   useEffect(() => {
     axios.get("http://localhost:5000/employee").then(response => console.log(response.data)).catch(error => console.log(error));
   }, [])
@@ -34,15 +35,17 @@ const SignIn = () => {
     
     try {
       const response = await axios.post("http://localhost:5000/login", adminData);
-      if (adminData.role === "admin") {
+      setUser(response.data.user)
+      console.log(user._id);
+      if (user.role === "admin") {
       navigate('/dashboard');
       }
-      if (adminData.role === "employee") {
-        navigate('/dashboard')
+      if (user.role === "employee") {
+        navigate(`/empDashboard/${user._id}`)
       }
       console.log(response);
     } catch (error) {
-      console.error(error.response.data);
+      console.error(error.response);
     }
 
   //   {
