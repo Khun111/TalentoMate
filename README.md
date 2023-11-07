@@ -61,3 +61,20 @@ cd talento-mate
 cd backend 
 npm install
 ```
+
+3. Configure your MongoDB and Redis databases and update the configuration accordingly.
+
+4. Start the application:
+
+```npm start```
+
+5. Access the application by navigating to http://localhost:3000 in your web browser.
+
+## Getting Started
+Once you have installed and run Talento Mate, you can begin by creating employee profiles, tracking attendance, and exploring the various features. Refer to the documentation for detailed usage instructions.
+
+## Usage
+Talento Mate is designed to be intuitive, but for detailed instructions on using the application, please consult the user manual included in the documentation folder. If you encounter any issues or have questions, please don't hesitate to reach out to our support team.
+
+## Contributors
+- [Khun111](https://github.com/Khun111)
