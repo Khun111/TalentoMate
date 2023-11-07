@@ -78,5 +78,5 @@ Talento Mate is designed to be intuitive, but for detailed instructions on using
 
 ## Contributors
 - [Samuel Oluwatobi Amure](https://github.com/Khun111)
-- [Charity Muteti]()
-- [Malvin Muthuuri]()
+- [Charity Muteti](https://github.com/Chacha-M)
+- [Malvin Muthuuri](https://github.com/malvinmuthuuri47)
